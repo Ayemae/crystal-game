@@ -41,8 +41,8 @@ $(document).ready(function () {
     //     }
     // }
     // PseudeCode Amibitions for Touch Values:
-    // There must be AT LEAST ONE ODD NUMBER
     // All values MUST BE UNIQUE
+    // There must be AT LEAST ONE ODD NUMBER
     // Otherwise, re-randomize touch value(s)
 
 
@@ -75,13 +75,13 @@ $(document).ready(function () {
         if (playerScore === goalNumber) {
             winCount++;
             isGameOver = true;
-            $("#outcome-msg").html("You won!");
+            $("#outcome-msg").html("Great job!");
             popUp();
         }
         if (playerScore > goalNumber) {
             lossCount++;
             isGameOver = true;
-            $("#outcome-msg").html("You lost!");
+            $("#outcome-msg").html("Oops. Try again?");
             popUp();
         }
         return isGameOver;
@@ -92,8 +92,8 @@ $(document).ready(function () {
     function updateStats() {
         $("#goal-no").html(goalNumber);
         $("#score").html(playerScore);
-        $("#wins").html("<p>Wins: " + winCount + "</p>");
-        $("#losses").html("<p>Losses: " + lossCount + "</p>");
+        $("#wins").html("<p>Successfully Bottled Potions: " + winCount + "</p>");
+        $("#losses").html("<p>Biohazard Spillage: " + lossCount + "</p>");
         console.log(meterFilled + "%");
     };
 
