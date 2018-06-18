@@ -25,20 +25,19 @@ $(document).ready(function () {
 
     //Game + Functions
 
-    // function returnUniqueToucheVals() {
-    //     function randomizeValues() {
-    //         for (var i = 0; i < touchValues.length; i++) {
-    //             touchValues[i] = Math.floor(Math.random() * 12 + 1);
-    //         };
-    //     } // end randomizeValues
-    //     function isOdd(num) { return num % 2; };
-    //     for (var i = 0; i < touchValues.length; i++) {
-    //         if (touchValues.indexOf(isOdd(touchValues[i]))) {
-    //             return touchValues;
-    //         }
-    //         else {
-    //             randomizeValues();
-    //         }
+    // function getTouchVal() {
+    //         return Math.floor(Math.random() * 12 + 1);
+    // } // end getUniqueVals
+    
+    
+    
+    // function isOdd(num) { return num % 2; };
+    // for (var i = 0; i < touchValues.length; i++) {
+    //     if (touchValues.indexOf(isOdd(touchValues[i]))) {
+    //         return touchValues;
+    //     }
+    //     else {
+    //         randomizeValues();
     //     }
     // }
     // PseudeCode Amibitions for Touch Values:
@@ -58,6 +57,7 @@ $(document).ready(function () {
         playerScore = 0;
         meterFilled = 0;
         isGameOver = false;
+        $("#meter-filled").animate({ height: meterFilled + "%" });
         updateStats();
         console.log(touchValues);
     };
@@ -106,7 +106,7 @@ $(document).ready(function () {
             playerScore = playerScore + touchValues[0];
             checkForGameOver();
             fillMeter(playerScore, goalNumber);
-            $("#meter-filled").animate({height: meterFilled + "%"});
+            $("#meter-filled").animate({ height: meterFilled + "%" });
             updateStats();
         }
     });
@@ -116,7 +116,7 @@ $(document).ready(function () {
             playerScore = playerScore + touchValues[1];
             checkForGameOver();
             fillMeter(playerScore, goalNumber);
-            $("#meter-filled").animate({height: meterFilled + "%"});
+            $("#meter-filled").animate({ height: meterFilled + "%" });
             updateStats();
         }
     });
@@ -126,7 +126,7 @@ $(document).ready(function () {
             playerScore = playerScore + touchValues[2];
             checkForGameOver();
             fillMeter(playerScore, goalNumber);
-            $("#meter-filled").animate({height: meterFilled + "%"});
+            $("#meter-filled").animate({ height: meterFilled + "%" });
             updateStats();
         }
     });
@@ -136,7 +136,7 @@ $(document).ready(function () {
             playerScore = playerScore + touchValues[3];
             checkForGameOver();
             fillMeter(playerScore, goalNumber);
-            $("#meter-filled").animate({height: meterFilled + "%"});
+            $("#meter-filled").animate({ height: meterFilled + "%" });
             updateStats();
         }
     }); // end Touch buttons
@@ -149,8 +149,8 @@ $(document).ready(function () {
 
     $("#outcome-msg").html(message);
 
-    $("#wins").html("<p>Wins: " + winCount + "</p>");
-    $("#losses").html("<p>Losses: " + lossCount + "</p>");
+    $("#wins").html("Wins: " + winCount);
+    $("#losses").html("Losses: " + lossCount);
 
 
     $("#reset").on("click", function () {
