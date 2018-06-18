@@ -28,9 +28,9 @@ $(document).ready(function () {
     // function getTouchVal() {
     //         return Math.floor(Math.random() * 12 + 1);
     // } // end getUniqueVals
-    
-    
-    
+
+
+
     // function isOdd(num) { return num % 2; };
     // for (var i = 0; i < touchValues.length; i++) {
     //     if (touchValues.indexOf(isOdd(touchValues[i]))) {
@@ -101,6 +101,18 @@ $(document).ready(function () {
 
     // Touch Buttons
 
+    // DRY version but it's broken.  :C
+    // $(".touchbtn").on("click", function () {
+    //     var val = $(this).val();
+    //     if (isGameOver === false) {
+    //         playerScore = playerScore + touchValues[val];
+    //         checkForGameOver();
+    //         fillMeter(playerScore, goalNumber);
+    //         $("#meter-filled").animate({ height: meterFilled + "%" });
+    //         updateStats();
+    //     }
+    // });
+
     $("#touch-0").on("click", function () {
         if (isGameOver === false) {
             playerScore = playerScore + touchValues[0];
@@ -164,12 +176,4 @@ function popUp() {
     var popup = document.getElementById("myPopup");
     popup.classList.toggle("show");
 };
-
-
-// Welp, that was a waste of time.
-        // for (var t = 0; t < 4; t++) {
-        //     $('#touch-' + t).on("click", function () {
-        //     playerScore = playerScore + touchValues[t];
-        //     console.log(playerScore);
-        // });
 
