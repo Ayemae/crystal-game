@@ -1,27 +1,20 @@
 $(document).ready(function () {
 
-    // function resetGame() {
-    //     goalNumber = 0;
-    //     playerScore = 0;
-    //     touch1value = 0;
-    //     touch2value = 0;
-    //     touch3value = 0;
-    //     touch4value = 0;
-    // };
 
 
     //Globals 
     var playerScore = 0;
-    //var goalNumber is defined in-game
+    var goalNumber = 19;
 
-    var touch1value = 0;
-    var touch2value = 0;
-    var touch3value = 0;
-    var touch4value = 0;
+    var touch1value = 1;
+    var touch2value = 1;
+    var touch3value = 1;
+    var touch4value = 1;
 
     var touchValues = [touch1value, touch2value, touch3value, touch4value];
     var uniqueTouchValues = []; //resurrect later?
 
+    var message = "";
 
     var winCount = 0;
     var lossCount = 0;
@@ -29,45 +22,67 @@ $(document).ready(function () {
 
 
 
-//Game + Functions
+    //Game + Functions
 
-    function getTouchValues() {
+    // function returnUniqueToucheVals() {
+    //     function randomizeValues() {
+    //         for (var i = 0; i < touchValues.length; i++) {
+    //             touchValues[i] = Math.floor(Math.random() * 12 + 1);
+    //         };
+    //     } // end randomizeValues
+    //     function isOdd(num) { return num % 2; };
+    //     for (var i = 0; i < touchValues.length; i++) {
+    //         if (touchValues.indexOf(isOdd(touchValues[i]))) {
+    //             return touchValues;
+    //         }
+    //         else {
+    //             randomizeValues();
+    //         }
+    //     }
+    // }
+    // PseudeCode Amibitions for Touch Values:
+    // There must be AT LEAST ONE ODD NUMBER
+    // All values MUST BE UNIQUE
+    // Otherwise, re-randomize touch value(s)
+
+
+
+
+
+    function resetGame() {
+        goalNumber = Math.floor(Math.random() * 101 + 19);
         for (var i = 0; i < touchValues.length; i++) {
             touchValues[i] = Math.floor(Math.random() * 12 + 1);
         }
-        return touchValues;
+        playerScore = 0;
+        isGameOver = false;
+        updateStats();
+        console.log(touchValues);
     };
-    // PseudeCode Amibitions for Touch Values:
-    // There must be AT LEAST ONE ODD NUMBER
-    // There must be AT LEAST ONE EVEN NUMBER
-    // All values MUST BE UNIQUE
-    // Otherwise, re-randomize touch values
 
 
-
-    
-    //define Values For Game
-    var goalNumber = Math.floor(Math.random() * 101 + 19);
-    getTouchValues();
-
-
+    resetGame();
 
     function checkForGameOver() {
         if (playerScore === goalNumber) {
             winCount++;
             isGameOver = true;
-            console.log("You won!");
+            $("#outcome-msg").html("You won!");
+            popUp();
         }
         if (playerScore > goalNumber) {
             lossCount++;
             isGameOver = true;
-            console.log("You lost!");
+            $("#outcome-msg").html("You lost!");
+            popUp();
         }
-        console.log(isGameOver);
         return isGameOver;
     };
 
-    function ammendStats() {
+
+
+    function updateStats() {
+        $("#goal-no").html(goalNumber);
         $("#score").html(playerScore);
         $("#wins").html("<p>Wins: " + winCount + "</p>");
         $("#losses").html("<p>Losses: " + lossCount + "</p>");
@@ -75,15 +90,13 @@ $(document).ready(function () {
 
 
 
-
-
-    // Buttons
+    // Touch Buttons
 
     $("#touch-0").on("click", function () {
         if (isGameOver === false) {
             playerScore = playerScore + touchValues[0];
-            ammendStats();
             checkForGameOver();
+            updateStats();
         }
     });
 
@@ -91,7 +104,7 @@ $(document).ready(function () {
         if (isGameOver === false) {
             playerScore = playerScore + touchValues[1];
             checkForGameOver();
-            ammendStats();
+            updateStats();
         }
     });
 
@@ -99,7 +112,7 @@ $(document).ready(function () {
         if (isGameOver === false) {
             playerScore = playerScore + touchValues[2];
             checkForGameOver();
-            ammendStats();
+            updateStats();
         }
     });
 
@@ -107,35 +120,33 @@ $(document).ready(function () {
         if (isGameOver === false) {
             playerScore = playerScore + touchValues[3];
             checkForGameOver();
-            ammendStats();
+            updateStats();
         }
-    });
-
-
-
-    //test
-    console.log(touchValues);
+    }); // end Touch buttons
 
 
 
     //print to page at game start
     $("#goal-no").html(goalNumber);
     $("#score").html(playerScore);
+
+    $("#outcome-msg").html(message);
+
     $("#wins").html("<p>Wins: " + winCount + "</p>");
     $("#losses").html("<p>Losses: " + lossCount + "</p>");
 
 
-
-
-
-
-
-
-
+    $("#reset").on("click", function () {
+        resetGame();
+    });
 
 
 }); //end doc.ready
 
+function popUp() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+};
 
 
 // Welp, that was a waste of time.

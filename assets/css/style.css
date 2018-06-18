@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Metamorphous|Ubuntu');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 20px;
+    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+    background-color: aliceblue;
+    text-align: center;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+h1, h2, h3 {
+    font-family: 'Metamorphous', 'Lucida Grande', Georgia, Times, serif;
+}
+
+h1 {
+    font-size: 2.5em;
+    padding: 15px;
+}
+
+p {
+    padding: 12px;
+}
+
+button {
+    border: none;
+    font-size: 1.2em;
+    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+    padding: .2em .5em;
+    border-radius: 6px;
+    background-color: #d8caf7;
+    outline: none;
+    cursor: pointer;
+}
+
+#goal-no,
+#score {
+    font-size: 3em;
+}
+
+
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 400px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px 10px 20px;
+    position: fixed;
+    top: 25%;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
+    z-index: 100;
+    margin: auto;
+    -webkit-box-shadow: 0px 5px 15px 6px rgba(110,62,150,0.4);
+    -moz-box-shadow: 0px 5px 15px 6px rgba(110,62,150,0.4);
+    box-shadow: 0px 5px 15px 6px rgba(110,62,150,0.4);
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn .5s;
+    animation: fadeIn .5s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
