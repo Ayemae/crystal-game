@@ -15,6 +15,7 @@ $(document).ready(function () {
     var uniqueTouchValues = []; //resurrect later?
 
     var message = "";
+    var meterFilled = 0;
 
     var winCount = 0;
     var lossCount = 0;
@@ -55,10 +56,17 @@ $(document).ready(function () {
             touchValues[i] = Math.floor(Math.random() * 12 + 1);
         }
         playerScore = 0;
+        meterFilled = 0;
         isGameOver = false;
         updateStats();
         console.log(touchValues);
     };
+
+    function fillMeter(s, g) {
+        var a = s / g;
+        meterFilled = Math.round(a * 100);
+        return meterFilled;
+    }
 
 
     resetGame();
@@ -86,6 +94,7 @@ $(document).ready(function () {
         $("#score").html(playerScore);
         $("#wins").html("<p>Wins: " + winCount + "</p>");
         $("#losses").html("<p>Losses: " + lossCount + "</p>");
+        console.log(meterFilled + "%");
     };
 
 
@@ -96,6 +105,8 @@ $(document).ready(function () {
         if (isGameOver === false) {
             playerScore = playerScore + touchValues[0];
             checkForGameOver();
+            fillMeter(playerScore, goalNumber);
+            $("#meter-filled").animate({height: meterFilled + "%"});
             updateStats();
         }
     });
@@ -104,6 +115,8 @@ $(document).ready(function () {
         if (isGameOver === false) {
             playerScore = playerScore + touchValues[1];
             checkForGameOver();
+            fillMeter(playerScore, goalNumber);
+            $("#meter-filled").animate({height: meterFilled + "%"});
             updateStats();
         }
     });
@@ -112,6 +125,8 @@ $(document).ready(function () {
         if (isGameOver === false) {
             playerScore = playerScore + touchValues[2];
             checkForGameOver();
+            fillMeter(playerScore, goalNumber);
+            $("#meter-filled").animate({height: meterFilled + "%"});
             updateStats();
         }
     });
@@ -120,6 +135,8 @@ $(document).ready(function () {
         if (isGameOver === false) {
             playerScore = playerScore + touchValues[3];
             checkForGameOver();
+            fillMeter(playerScore, goalNumber);
+            $("#meter-filled").animate({height: meterFilled + "%"});
             updateStats();
         }
     }); // end Touch buttons
