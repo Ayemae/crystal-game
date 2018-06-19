@@ -6,13 +6,7 @@ $(document).ready(function () {
     var playerScore = 0;
     var goalNumber = 19;
 
-    var touch1value = 1;
-    var touch2value = 1;
-    var touch3value = 1;
-    var touch4value = 1;
-
-    var touchValues = [touch1value, touch2value, touch3value, touch4value];
-    var uniqueTouchValues = []; //resurrect later?
+    var touchValues = [1, 1, 1, 2];
 
     var message = "";
     var meterFilled = 0;
@@ -25,35 +19,27 @@ $(document).ready(function () {
 
     //Game + Functions
 
-    // function getTouchVal() {
-    //         return Math.floor(Math.random() * 12 + 1);
-    // } // end getUniqueVals
-
-
-
-    // function isOdd(num) { return num % 2; };
-    // for (var i = 0; i < touchValues.length; i++) {
-    //     if (touchValues.indexOf(isOdd(touchValues[i]))) {
-    //         return touchValues;
-    //     }
-    //     else {
-    //         randomizeValues();
-    //     }
-    // }
-    // PseudeCode Amibitions for Touch Values:
-    // All values MUST BE UNIQUE
-    // There must be AT LEAST ONE ODD NUMBER
-    // Otherwise, re-randomize touch value(s)
-
-
-
+    function getTouchVals() {
+        for (var i = 0; i < touchValues.length; i++) {
+            touchValues[i] = Math.floor(Math.random() * 12 + 1);
+        }
+        // Ensure that there's always 1 or 3 odd numbers in the button values.
+        // This is so that the goal number could virtually always be met.
+        if ((touchValues[0] + touchValues[1] + touchValues[2] + touchValues[3]) % 2 === 0) {
+            var j = touchValues.indexOf(Math.max(...touchValues));
+            touchValues[j] = touchValues[j] - 1;
+            // On the off-chance that the whole array was 1s, change the now-0 to 2.
+            if (touchValues[j] === 0) {
+                touchValues[j] = (touchValues[j] + 2);
+            }
+        }
+        return touchValues;
+    }
 
 
     function resetGame() {
         goalNumber = Math.floor(Math.random() * 101 + 19);
-        for (var i = 0; i < touchValues.length; i++) {
-            touchValues[i] = Math.floor(Math.random() * 12 + 1);
-        }
+        getTouchVals();
         playerScore = 0;
         meterFilled = 0;
         isGameOver = false;
@@ -160,9 +146,6 @@ $(document).ready(function () {
     $("#score").html(playerScore);
 
     $("#outcome-msg").html(message);
-
-    $("#wins").html("Wins: " + winCount);
-    $("#losses").html("Losses: " + lossCount);
 
 
     $("#reset").on("click", function () {

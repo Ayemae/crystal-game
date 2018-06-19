@@ -5,9 +5,11 @@
 }
 
 body {
+    color: #5f4421;
     font-size: 20px;
     font-family: 'Ubuntu', 'Futura', Helvetica, Arial, sans-serif;
     background-color: #eeede5;
+    background-image: url('../images/ricepaper_v3.png');
     text-align: center;
 }
 
@@ -42,6 +44,7 @@ img {
 
 header {
     height: 100px;
+    color: rgb(128, 89, 44);
 }
 
 .container {
@@ -73,6 +76,7 @@ header {
     padding: 20px;
     height: 160px;
     width: 100%;
+    align-items: center;
 }
 
 .score-container {
@@ -92,23 +96,27 @@ header {
 
 .beaker-box img {
     max-width: 20%;
+    cursor: pointer;
 }
 
 .left-side-content {
     float: left;
-    width: 20%;
-    padding: 10px;
+    width: 18%;
+    padding: 25px 10px 10px;
     text-align: center;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
+    background-color: rgba(49, 66, 77, .5);
+    margin-right: 10px;
+    border-radius: 8px;
 }
 
 #meter {
     width: 40px;
     height: 400px;
     background: transparent;
-    border-color: #fff #def9e7 #a2cfda #acc0e6;
+    border-color: #fff #fff #a2cfda #acc0e6;
     border-style: solid;
     border-width: 0 5px 7px;
     border-radius: 0 0 25px 25px;
@@ -193,8 +201,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6270b2', end
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
     visibility: visible;
-    -webkit-animation: fadeIn .5s;
-    animation: fadeIn .5s
+    -webkit-animation: fadeIn .25s;
+    animation: fadeIn .25s
 }
 
 /* Add animation (fade in the popup) */
