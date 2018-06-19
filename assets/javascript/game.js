@@ -6,7 +6,8 @@ $(document).ready(function () {
     var playerScore = 0;
     var goalNumber = 19;
 
-    var touchValues = [1, 1, 1, 2];
+    var touchValues = [1, 2, 3, 4];
+    var randNum = [0, 0, 0, 0];
 
     var message = "";
     var meterFilled = 0;
@@ -21,7 +22,10 @@ $(document).ready(function () {
 
     function getTouchVals() {
         for (var i = 0; i < touchValues.length; i++) {
-            touchValues[i] = Math.floor(Math.random() * 12 + 1);
+            randNum = Math.floor(Math.random() * 12 + 1);
+            if (touchValues.indexOf(randNum) === -1) {
+                touchValues[i] = randNum;
+            }
         }
         // Ensure that there's always 1 or 3 odd numbers in the button values.
         // This is so that the goal number could virtually always be met.
@@ -88,56 +92,17 @@ $(document).ready(function () {
     // Touch Buttons
 
     // DRY version but it's broken.  :C
-    // $(".touchbtn").on("click", function () {
-    //     var val = $(this).val();
-    //     if (isGameOver === false) {
-    //         playerScore = playerScore + touchValues[val];
-    //         checkForGameOver();
-    //         fillMeter(playerScore, goalNumber);
-    //         $("#meter-filled").animate({ height: meterFilled + "%" });
-    //         updateStats();
-    //     }
-    // });
-
-    $("#touch-0").on("click", function () {
+    $(".touchbtn").on("click", function () {
+        var val = $(this).attr("value");
+        console.log(val);
         if (isGameOver === false) {
-            playerScore = playerScore + touchValues[0];
+            playerScore = playerScore + touchValues[val];
             checkForGameOver();
             fillMeter(playerScore, goalNumber);
             $("#meter-filled").animate({ height: meterFilled + "%" });
             updateStats();
         }
     });
-
-    $("#touch-1").on("click", function () {
-        if (isGameOver === false) {
-            playerScore = playerScore + touchValues[1];
-            checkForGameOver();
-            fillMeter(playerScore, goalNumber);
-            $("#meter-filled").animate({ height: meterFilled + "%" });
-            updateStats();
-        }
-    });
-
-    $("#touch-2").on("click", function () {
-        if (isGameOver === false) {
-            playerScore = playerScore + touchValues[2];
-            checkForGameOver();
-            fillMeter(playerScore, goalNumber);
-            $("#meter-filled").animate({ height: meterFilled + "%" });
-            updateStats();
-        }
-    });
-
-    $("#touch-3").on("click", function () {
-        if (isGameOver === false) {
-            playerScore = playerScore + touchValues[3];
-            checkForGameOver();
-            fillMeter(playerScore, goalNumber);
-            $("#meter-filled").animate({ height: meterFilled + "%" });
-            updateStats();
-        }
-    }); // end Touch buttons
 
 
 
