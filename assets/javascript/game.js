@@ -88,7 +88,7 @@ $(document).ready(function () {
         $("#goal-no").html(goalNumber);
         $("#score").html(playerScore);
         $("#wins").html("<p>Successfully Bottled Potions: " + winCount + "</p>");
-        $("#losses").html("<p>Biohazard Spillage: " + lossCount + "</p>");
+        $("#losses").html("<p>Biohazard Spills: " + lossCount + "</p>");
     };
 
 
