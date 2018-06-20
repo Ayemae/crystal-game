@@ -164,6 +164,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6270b2', end
     height: 0;
     clear: both;
  }
+ 
+ .glow {
+    animation-name: pulse;
+    animation-duration: 4.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+ }
+
+ @keyframes pulse {
+
+    0% {
+        box-shadow: 0px 0px 35px 25px rgba(255, 160, 219, 0);
+    }
+
+    25% {
+        box-shadow: 0px 0px 35px 16px rgba(255, 160, 160, 1);
+    }
+
+    50% {
+        box-shadow: 0px 0px 15px 7px rgba(255, 251, 144, 1);
+    }
+    75% {
+        box-shadow: 0px 0px 35px 25px rgba(172, 255, 130, 1);
+    }
+    100% {
+        box-shadow: 0px 0px 15px 7px rgba(177, 171, 255, 1);
+    }
+
+  }
 
 #spill {
     position: absolute;

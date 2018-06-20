@@ -16,6 +16,7 @@ $(document).ready(function () {
     var lossCount = 0;
     var isGameOver = false;
     var gameLost = false;
+    var gameWon = false;
 
 
 
@@ -49,7 +50,9 @@ $(document).ready(function () {
         meterFilled = 0;
         isGameOver = false;
         gameLost = false;
-        $("#meter-filled").animate({ height: meterFilled + "%" }, {duration: 1});
+        gameWon = false;
+        $("#meter-filled").animate({ height: meterFilled + "%" }, { duration: 1 });
+        pulseGlow();
         spillOver();
         updateStats();
         console.log(touchValues);
@@ -62,12 +65,14 @@ $(document).ready(function () {
     }
 
 
-    resetGame();
+
 
     function checkForGameOver() {
         if (playerScore === goalNumber) {
             winCount++;
             isGameOver = true;
+            gameWon = true;
+            pulseGlow();
             $("#outcome-msg").html("Great job!");
             popUp();
         }
@@ -93,6 +98,8 @@ $(document).ready(function () {
 
 
 
+    resetGame();
+
     // Touch Buttons
 
     $(".touchbtn").on("click", function () {
@@ -101,7 +108,7 @@ $(document).ready(function () {
             playerScore = playerScore + touchValues[val];
             checkForGameOver();
             fillMeter(playerScore, goalNumber);
-            $("#meter-filled").animate({ height: meterFilled + "%" }, {duration: 110});
+            $("#meter-filled").animate({ height: meterFilled + "%" }, { duration: 110 });
             updateStats();
         }
     });
@@ -119,19 +126,24 @@ $(document).ready(function () {
         resetGame();
     });
 
-    function spillOver() {
-        
+    function pulseGlow() {
+        if (gameWon === true) {
+            function showGlow() {
+                $("#meter").addClass("glow");
+            }
+            setTimeout(showGlow, 115);
+        }
+        else { $("#meter").removeClass("glow"); }
+    };
 
-        var spill = document.getElementById("spill");
-        console.log(spill);
-        if (gameLost === true){
-            function showSpill () {
-                 $("#spill").addClass("show");
+    function spillOver() {
+        if (gameLost === true) {
+            function showSpill() {
+                $("#spill").addClass("show");
             }
             setTimeout(showSpill, 115);
         }
-        else {$("#spill").removeClass("show");}
-        
+        else { $("#spill").removeClass("show"); }
     };
 
 }); //end doc.ready
