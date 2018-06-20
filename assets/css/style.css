@@ -44,17 +44,22 @@ img {
 
 header {
     height: 100px;
-    color: rgb(128, 89, 44);
+    color: rgb(156, 97, 61);
+    margin-bottom: 10px;
 }
 
 .container {
-    width: 80%;
+    width: 960px;
     margin: auto;
 }
 
+.instructions {
+    margin-bottom: 20px;
+}
+
 .main-content {
-    float: left;
-    width: 70%;
+    float: right;
+    width: 85%;
 }
 
 .feedback {
@@ -65,7 +70,7 @@ header {
     border-width: 6px 0;
     border-style: double;
     border-color: cadetblue;
-    margin: 20px auto;
+    margin: 0 auto 20px;
 }
 
 .goal-no-container,
@@ -101,13 +106,13 @@ header {
 
 .left-side-content {
     float: left;
-    width: 18%;
+    width: 100px;
     padding: 25px 10px 10px;
     text-align: center;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
-    background-color: rgba(49, 66, 77, .5);
+    background-color: rgba(110, 165, 137, .4);
     margin-right: 10px;
     border-radius: 8px;
 }
@@ -116,9 +121,13 @@ header {
     width: 40px;
     height: 400px;
     background: transparent;
-    border-color: #fff #fff #a2cfda #acc0e6;
+    background: -moz-linear-gradient(top, rgba(153,153,153,0) 0%, rgba(130,147,194,0) 77%, rgba(123,145,206,0.7) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(153,153,153,0) 0%,rgba(130,147,194,0) 77%,rgba(123,145,206,0.7) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(153,153,153,0) 0%,rgba(130,147,194,0) 77%,rgba(123,145,206,0.7) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00999999', endColorstr='#b37b91ce',GradientType=0 ); /* IE6-9 */
+    border-color: #acc0e6 #fff #94a8dd #7c8fb3;
     border-style: solid;
-    border-width: 0 5px 7px;
+    border-width: 2px 4px 7px;
     border-radius: 0 0 25px 25px;
     margin: auto;
     overflow: visible;
@@ -127,6 +136,10 @@ header {
     flex-direction: column;
     position: relative;
     z-index: 2;
+}
+
+#meter img {
+    max-width: 200px;
 }
 
 #meter-filled {
@@ -152,14 +165,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6270b2', end
     clear: both;
  }
 
+#spill {
+    position: absolute;
+    bottom: 310px;
+    left: -26px;
+}
+
  .meter-reflection {
      width: 10px;
-     height: 250px;
+     height: 300px;
      position: absolute;
-     right: 10px;
+     right: 3px;
      top: 25px;
      z-index: 3;
-     background-color: rgba(255, 255, 255, 0.4);
+     background: -moz-radial-gradient(center, ellipse cover, rgba(239,245,255,1) 0%, rgba(153,153,153,0) 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover, rgba(239,245,255,1) 0%,rgba(153,153,153,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center, rgba(239,245,255,1) 0%,rgba(153,153,153,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eff5ff', endColorstr='#00999999',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
      border-radius: 8px;
  }
 
@@ -201,6 +224,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6270b2', end
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
     visibility: visible;
+    -webkit-animation: fadeIn .25s;
+    animation: fadeIn .25s
+}
+
+.hidden {
+    display: none;
+    -webkit-animation: fadeIn .25s;
+    animation: fadeIn .25s
+}
+
+.show {
+    display: inline;
     -webkit-animation: fadeIn .25s;
     animation: fadeIn .25s
 }

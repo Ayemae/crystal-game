@@ -15,6 +15,7 @@ $(document).ready(function () {
     var winCount = 0;
     var lossCount = 0;
     var isGameOver = false;
+    var gameLost = false;
 
 
 
@@ -47,7 +48,9 @@ $(document).ready(function () {
         playerScore = 0;
         meterFilled = 0;
         isGameOver = false;
-        $("#meter-filled").animate({ height: meterFilled + "%" });
+        gameLost = false;
+        $("#meter-filled").animate({ height: meterFilled + "%" }, {duration: 1});
+        spillOver();
         updateStats();
         console.log(touchValues);
     };
@@ -71,6 +74,8 @@ $(document).ready(function () {
         if (playerScore > goalNumber) {
             lossCount++;
             isGameOver = true;
+            gameLost = true;
+            spillOver();
             $("#outcome-msg").html("Oops. Try again?");
             popUp();
         }
@@ -84,22 +89,19 @@ $(document).ready(function () {
         $("#score").html(playerScore);
         $("#wins").html("<p>Successfully Bottled Potions: " + winCount + "</p>");
         $("#losses").html("<p>Biohazard Spillage: " + lossCount + "</p>");
-        console.log(meterFilled + "%");
     };
 
 
 
     // Touch Buttons
 
-    // DRY version but it's broken.  :C
     $(".touchbtn").on("click", function () {
         var val = $(this).attr("value");
-        console.log(val);
         if (isGameOver === false) {
             playerScore = playerScore + touchValues[val];
             checkForGameOver();
             fillMeter(playerScore, goalNumber);
-            $("#meter-filled").animate({ height: meterFilled + "%" });
+            $("#meter-filled").animate({ height: meterFilled + "%" }, {duration: 110});
             updateStats();
         }
     });
@@ -117,6 +119,20 @@ $(document).ready(function () {
         resetGame();
     });
 
+    function spillOver() {
+        
+
+        var spill = document.getElementById("spill");
+        console.log(spill);
+        if (gameLost === true){
+            function showSpill () {
+                 $("#spill").addClass("show");
+            }
+            setTimeout(showSpill, 115);
+        }
+        else {$("#spill").removeClass("show");}
+        
+    };
 
 }); //end doc.ready
 
