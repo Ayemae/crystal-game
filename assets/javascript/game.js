@@ -24,10 +24,7 @@ $(document).ready(function () {
 
     function getTouchVals() {
         for (var i = 0; i < touchValues.length; i++) {
-            randNum = Math.floor(Math.random() * 12 + 1);
-            if (touchValues.indexOf(randNum) === -1) {
-                touchValues[i] = randNum;
-            }
+            touchValues[i] = Math.floor(Math.random() * 12 + 1);
         }
         // Ensure that there's always 1 or 3 odd numbers in the button values.
         // This is so that the goal number could virtually always be met.
